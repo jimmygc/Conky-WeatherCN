@@ -1,0 +1,86 @@
+ conky.config = {
+   background = true,
+   cpu_avg_samples = 1,
+   net_avg_samples = 1,
+   out_to_console = false,
+   use_xft = true,
+   font = 'WenQuanYi Micro Hei Mono:style=Regular:size=10',
+   own_window_argb_visual = true,
+   xftalpha = 0.8,
+   update_interval = 5,
+   own_window = true,
+   own_window_transparent = true,
+   own_window_hints = "undecorated,below,sticky,skip_taskbar,skip_pager",
+   own_window_type = "desktop",
+   double_buffer = true,
+   maximum_width = 260,
+   draw_shades = false,
+   draw_outline = false,
+   draw_borders = false,
+   stippled_borders = 0,
+   default_color = "C0C0C0",
+   default_shade_color = "C0C0C0",
+   default_outline_color = "C0C0C0",
+   gap_x = 5,
+   gap_y = 35,
+   alignment = "top_right",
+   use_spacer = "none",
+   no_buffers = true,
+   minimum_width = 260,
+ }
+ conky.text = [[
+${font WenQuanYi Micro Hei Mono:style=Bold:size=12}Ubuntu${font} ${hr 2}
+#Hostname: $alignr$nodename
+#Kernel: $alignr$kernel
+Uptime: $alignr$uptime
+${font WenQuanYi Micro Hei Mono:style=Bold:size=12}Sensors${font} ${hr 2}
+CPU Temp: ${alignr}${execi 15 sensors coretemp-isa-0000 | grep "Core 0" | cut -d" " -f 9}
+GPU Temp: ${alignr}${execi 15 sensors radeon-pci-0100 | grep "temp1" | cut -d" " -f9}
+${font WenQuanYi Micro Hei Mono:style=Bold:size=12}CPU${font} ${hr 2}
+Frequency: ${alignr}${freq dyn} MHz
+Processes: ${alignr}$processes ($running_processes running)
+Load: ${alignr}$loadavg
+CPU1 ${alignr}${cpu cpu1}%
+${cpubar 4 cpu1}
+CPU2 ${alignr}${cpu cpu2}%
+${cpubar 4 cpu2}
+CPU Top $alignr CPU%
+${top name 1}$alignr${top cpu 1}
+${top name 2}$alignr${top cpu 2}
+${top name 3}$alignr${top cpu 3}
+${font WenQuanYi Micro Hei Mono:style=Bold:size=12}Memory${font} ${hr 2}
+Ram ${alignr}$mem / $memmax ($memperc%)
+${membar 4}
+swap ${alignr}$swap / $swapmax ($swapperc%)
+${swapbar 4}
+Memory Top $alignr MEM%
+${top_mem name 1}$alignr${top_mem mem 1}
+${top_mem name 2}$alignr${top_mem mem 2}
+${top_mem name 3}$alignr${top_mem mem 3}
+${font WenQuanYi Micro Hei Mono:style=Bold:size=12}FILE SYSTEM${font} ${hr 2}
+Write: ${diskio_write sda}/s ${alignr}Read:${diskio_read sda}/s
+${diskiograph_write sda 25,107 -l} ${alignr}${diskiograph_read sda 25,107 -l}
+Root: ${alignr}${fs_free /} / ${fs_size /}
+${fs_bar 4 /}
+#Home: ${alignr}${fs_free /home} / ${fs_size /home}
+#${fs_bar 4 /home}
+${font WenQuanYi Micro Hei Mono:style=Bold:size=12}NETWORK${font} ${hr 2}
+IP: $alignr${addr br0}
+External IP: $alignr${execi 900 curl -s ip.cn | sed -e '/.*当前 IP：/!d;s///;s/ .*//'}
+Down ${downspeed enp0s25}/s ${alignr}Up ${upspeed enp0s25}/s
+${downspeedgraph enp0s25 25,107} ${alignr}${upspeedgraph enp0s25 25,107}
+Total ${totaldown enp0s25} ${alignr}Total ${totalup enp0s25}
+${font WenQuanYi Micro Hei Mono:style=Bold:size=12}WEATHER${font} ${hr 2}${execi 3600 ~/.conky/weather-preload.sh }
+Current Temperature: ${alignr}${font San:style=Regular:size=11}${exec sed -n '1p' /tmp/conkyweather }℃${font}
+Current Weather: ${alignr}${exec sed -n '2p' /tmp/conkyweather}
+${font San:style=Regular:size=12}Today${alignr}Tomorrow${font}
+#${exec ~/.conky/getweather.sh daily_forecast[0].cond.txt_d}${alignr}${exec ~/.conky/getweather.sh daily_forecast[1].cond.txt_d}
+${font San:style=Regular:size=11}${exec sed -n "4p" /tmp/conkyweather}-${exec sed -n "3p" /tmp/conkyweather}${alignr}${exec exec sed -n "6p" /tmp/conkyweather}-${exec exec sed -n "5p" /tmp/conkyweather}${font}
+${image /tmp/conkyweather_today.png -p 0,720}
+${image /tmp/conkyweather_tomorrow.png -p 190,720}
+ ]]
+
+
+
+
+
