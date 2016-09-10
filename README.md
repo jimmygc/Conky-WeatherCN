@@ -22,5 +22,5 @@ Contents:
 Screenshot:
 
 
-![image](https://github.com/jimmygc/Conky-CNweather/raw/master/screen-shot.png)
+![image](https://github.com/jimmygc/Conky-WeatherCN/raw/master/screen-shot.png)
 

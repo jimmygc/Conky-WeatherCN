@@ -11,7 +11,7 @@
    own_window = true,
    own_window_transparent = true,
    own_window_hints = "undecorated,below,sticky,skip_taskbar,skip_pager",
-   own_window_type = "desktop",
+   own_window_type = "normal",
    double_buffer = true,
    maximum_width = 260,
    draw_shades = false,
