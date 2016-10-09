@@ -74,10 +74,9 @@ ${font WenQuanYi Micro Hei Mono:style=Bold:size=12}WEATHER${font} ${hr 2}${execi
 Current Temperature: ${alignr}${font San:style=Regular:size=11}${exec sed -n '1p' /tmp/conkyweather }℃${font}
 Current Weather: ${alignr}${exec sed -n '2p' /tmp/conkyweather}
 ${font San:style=Regular:size=12}Today${alignr}Tomorrow${font}
-#${exec ~/.conky/getweather.sh daily_forecast[0].cond.txt_d}${alignr}${exec ~/.conky/getweather.sh daily_forecast[1].cond.txt_d}
 ${font San:style=Regular:size=11}${exec sed -n "4p" /tmp/conkyweather}-${exec sed -n "3p" /tmp/conkyweather}${alignr}${exec exec sed -n "6p" /tmp/conkyweather}-${exec exec sed -n "5p" /tmp/conkyweather}${font}
-${image /tmp/conkyweather_today.png -p 0,720}
-${image /tmp/conkyweather_tomorrow.png -p 190,720}
+${image /tmp/conkyweather_today.png -p 0,720 -n}
+${image /tmp/conkyweather_tomorrow.png -p 190,720 -n}
  ]]
 
 
